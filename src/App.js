@@ -9,6 +9,8 @@ import {
   import Home from './pages/Home';
   import Detail from './pages/Detail';
   import Page404 from './pages/Page404';
+  import 'bootstrap/dist/css/bootstrap.css';
+ 
 
 export default class App extends Component {
   render() {
