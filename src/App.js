@@ -1,7 +1,25 @@
-import React from "react";
+import React, { Component } from 'react'
+import {
+	BrowserRouter as Router,
+	Switch,
+	Route,
+	Link
+  } from "react-router-dom";
 
-function App() {
-  return <div className="App">App</div>;
+  import Home from './pages/Home';
+  import Detail from './pages/Detail';
+  import Page404 from './pages/Page404';
+
+export default class App extends Component {
+  render() {
+    return (
+      <Router>
+          <Switch>
+              <Route path="/movie/:id" component={Detail}></Route>
+              <Route path="/" exact component={Home}></Route>
+			  <Route path="/" component={Page404}></Route>
+          </Switch>
+      </Router>
+    )
+  }
 }
-
-export default App;
