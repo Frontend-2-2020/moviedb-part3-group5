@@ -16,7 +16,6 @@ export default class Home extends Component {
     }
 
     getMovies = () => {
-        console.log("test");
         Axios.get('https://api.themoviedb.org/3/movie/popular?'+ "&api_key=" + API_key + "&page=" + this.state.page)
         .then(response => {
             this.setState({
@@ -32,20 +31,14 @@ export default class Home extends Component {
         if(e.target.id == 'prev'){
             if(page != 1 ){
                 page--;
-                this.setState({
-                    page: page
-                })
             }
         }else{
             page++
-            this.setState({
-                page: page
-            })
         }
 
-        this.getMovies();
-        console.log(this.state.movies);
-        console.log(page);
+        this.setState({
+            page: page
+        },() => this.getMovies())
     }
 
     render() {
