@@ -18,6 +18,15 @@ export default class Detail extends Component {
       });
     });
   }
+
+  createStars = () => {
+    let stars = [];
+    for (let i = 0; i < parseInt(this.state.movieDetail.vote_average); i++) {
+      stars.push(<FontAwesomeIcon key={i} icon={faStar} />);
+    }
+    return stars;
+  };
+
   render() {
     const { movieDetail } = this.state;
     const jumbotronStyle = {
@@ -63,42 +72,70 @@ export default class Detail extends Component {
                 <h3 className="card-title text-center">
                   {movieDetail.original_title}
                 </h3>
-                <p className="card-text">{movieDetail.overview}</p>
-                <p className="card-text">
+                <div className="card-text">{movieDetail.overview}</div>
+                <div className="card-text">
                   {movieDetail.genres.map(genre => {
                     return (
-                      <span className="badge badge-primary mr-2 p-2">
+                      <span
+                        key={genre.id}
+                        className="badge badge-primary mr-2 mt-1 p-2"
+                      >
                         {genre.name}
                       </span>
                     );
                   })}
-                </p>
-                <p>
+                </div>
+                <div>
                   <div className="d-flex justify-content-between">
                     <div>
-                      {movieDetail.production_companies.map(companie => {
-                        if (companie.logo_path) {
+                      {movieDetail.production_companies.map(company => {
+                        if (company.logo_path) {
                           const imgPath =
                             "https://image.tmdb.org/t/p/w45/" +
-                            companie.logo_path;
-                          return <img className="mr-2" src={imgPath} />;
+                            company.logo_path;
+                          return (
+                            <img
+                              key={company.id}
+                              className="mr-2"
+                              src={imgPath}
+                            />
+                          );
                         }
                       })}
                     </div>
-                    <span className="icon">
-                      {movieDetail.vote_average}
-                      <FontAwesomeIcon checked={true} icon={faStar} />
-                    </span>
+                    <div className="userrating d-flex flex-column">
+                      <div className="icon">
+                        {this.createStars()}
+                        {/* <FontAwesomeIcon icon={faStar} /> */}
+                      </div>
+                      <div>
+                        {movieDetail.vote_average} average based on{" "}
+                        {movieDetail.vote_count} ratings.
+                      </div>
+                    </div>
                   </div>
-                </p>
-                <p className="card-text">
-                  Relase Date: {movieDetail.release_date}
-                </p>
+                </div>
+                <div className="card-text">
+                  <div className="propertys d-flex justify-content-between">
+                    <div className="property-group">
+                      <div className="property-title">Release Date: </div>
+                      <div className="property">{movieDetail.release_date}</div>
+                    </div>
+                    <div className="property-group">
+                      <div className="property-title">popularity: </div>
+                      <div className="property">{movieDetail.popularity}</div>
+                    </div>
+                  </div>
+                </div>
+                <div className="homebutton">
+                  <a className="btn btn-info" href="/">
+                    Home
+                  </a>
+                </div>
               </div>
             </div>
           </div>
         </div>
-        {/* <img src={this.state.backdrop} alt="" /> */}
       </div>
     );
   }

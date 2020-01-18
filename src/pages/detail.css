@@ -13,7 +13,25 @@
 .blockquote::after {
   content: " \201D";
 }
+.card-body > div {
+  margin-top: 1em;
+}
 .icon {
   color: orange;
-  font-size: xxx-large;
+  font-size: 1.5em;
+}
+.userrating {
+  font-weight: bold;
+  text-align: right;
+}
+
+.homebutton {
+  text-align: right;
+}
+.property-group:nth-child(2) {
+  text-align: right;
+}
+.property-title {
+  font-style: italic;
+  font-size: 1.5em;
 }
