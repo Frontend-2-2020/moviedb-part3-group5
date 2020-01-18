@@ -1,11 +1,22 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 
 export default class Page404 extends Component {
-    render() {
-        return (
-            <div>
-                404
-            </div>
-        )
-    }
+  render() {
+    return (
+      <div
+        className="d-flex justify-content-center align-items-center"
+        id="main"
+      >
+        <h1 className="mr-3 pr-3 align-top border-right inline-block align-content-center">
+          404
+        </h1>
+        <div className="inline-block align-middle">
+          <h2 className="font-weight-normal lead" id="desc">
+            The page you requested was not found.
+          </h2>
+          <a href="http://localhost:3000">back to homepage</a>
+        </div>
+      </div>
+    );
+  }
 }
